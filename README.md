@@ -1,1 +1,4 @@
-This is the repo of the BDD course with Rails 5 - Alpha Blog
+RSpec and Capybara
+- Write out the scenario in a test file
+- First Step: Test will fail.
+- Build the features one by one, until the test passes
