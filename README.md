@@ -1,3 +1,1 @@
-- Completing view for new article
-- Creating article model
-- Adding bootstrap
+- Adding guard

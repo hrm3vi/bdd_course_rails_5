@@ -47,6 +47,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.7'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Adding guard
+  gem 'guard', '~> 2.14.0'
+  gem 'guard-rspec', '~> 4.7.2'
+  gem 'guard-cucumber', '~> 2.1.2'
 end
 
 group :development do
