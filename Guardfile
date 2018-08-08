@@ -70,8 +70,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
-  ## These are added in the class, for reasons yet unknow. Perhaps to map tests from somewhere to run under the guidance of something meant to guide something else. Alas, I wait for my cousin to finish typing and checking her code.
-
+  ## These are added in the class to watch for changes in the respective directory and run the features tests
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" }
   watch(%r{^app/models/(.+)\.rb$}) { "spec/features" }
   ##
