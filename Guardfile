@@ -70,6 +70,12 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
+  ## These are added in the class, for reasons yet unknow. Perhaps to map tests from somewhere to run under the guidance of something meant to guide something else. Alas, I wait for my cousin to finish typing and checking her code.
+
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) { "spec/features" }
+  watch(%r{^app/models/(.+)\.rb$}) { "spec/features" }
+  ##
+
   watch(rails.controllers) do |m|
     [
       rspec.spec.call("routing/#{m[1]}_routing"),
@@ -80,11 +86,11 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   # Rails config changes
   watch(rails.spec_helper)     { rspec.spec_dir }
-  watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
+  watch(rails.routes)          { "spec" } #{ "#{rspec.spec_dir}/routing" } ## Change in class
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.view_dirs)     { "spec/features" } #{ |m| rspec.spec.call("features/#{m[1]}") } ## Changed in class
   watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
