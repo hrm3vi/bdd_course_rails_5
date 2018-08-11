@@ -1,0 +1,24 @@
+<script>
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
+
+<div class="jumbotron jumbotron-fluid" style="margin-top: 1rem;">
+  <div class="container">
+    <h1 class="display-1"><%= @article.title %></h1>
+     <div class="float-right">
+		<small>
+			<button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="<%= @article.created_at %>">
+  				<i class="fas fa-calendar"></i>
+			</button>
+		</small>
+	</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top: -1rem;">
+  <div class="card-body">
+    <%= @article.body %>
+  </div>
+</div>

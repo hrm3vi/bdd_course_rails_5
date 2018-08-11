@@ -1,5 +1,8 @@
-listing articles feature
+show articles
 
-- create 2 articles to display
-- list the 2 artricles 
-- expect both articles' title and body to be present
+- create 1 article to display
+- show the article title and details
+- test responses
+- handling for record not found
+
+- updating views
