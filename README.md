@@ -1,4 +1,4 @@
 - edit articles
 - delete articles
 - update to views
-- refactor code
+- refactor code: controller, view
