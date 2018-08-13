@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.feature "creating articles" do
+
+  scenario "a user visits new-article page from index" do
+    visit "/"
+    click_link "New Article"
+    expect(page).to have_content("Create a new article")
+    expect(page).to have_css('input#article_title')
+    expect(page).to have_css('textarea#article_body')
+    expect(page).to have_button('Create Article')
+  end
+
   scenario "a user creates a new article" do
     visit "/"
     click_link "New Article"
