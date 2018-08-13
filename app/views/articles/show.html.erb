@@ -13,6 +13,8 @@
   				<i class="fa fa-calendar"></i>
 			</button>
 		</small>
+
+
 	</div>
   </div>
 </div>
@@ -22,3 +24,17 @@
     <%= @article.body %>
   </div>
 </div>
+
+<div class="container"  style="margin-top: 2rem;">
+  <div class="row justify-content-center">
+    <div class="col-md-1">
+      <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+</div>
+
+		<small>
+			<button type="button" class="btn btn-light" data-toggle="tooltip" data-placement="top" title="Edit Article">
+  				<i class="fa fa-pencil"></i>
+			</button>
+		</small>
