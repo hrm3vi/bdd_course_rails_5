@@ -1,4 +1,5 @@
-- edit articles
-- delete articles
-- update to views
-- refactor code: controller, view
+- user sign up, spec first
+
+- visit root
+- sign up :: email, pw, pw confirm
+- invalid sign up

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Deleting an Article" do
+RSpec.feature "deleting an article" do
 	
 	before do
 		@article = Article.create(title: "Title One", body: "Body of Article One")
