@@ -5,8 +5,8 @@ RSpec.feature 'Signup users' do
 		visit "/"
 		click_link "sign up"
 		fill_in "Email", with: 'example@test.com'
-		fill_in "Password", with: 'password'
-		fill_in "Password confirmation", with: 'password'
+		fill_in "Password (6 characters minimum)", with: 'password'
+		fill_in "Password Confirmation", with: 'password'
 		click_button 'Sign up'
 		expect(page).to have_content('You have signed up successfully.')
 	end
@@ -15,9 +15,16 @@ RSpec.feature 'Signup users' do
 		visit "/"
 		click_link "sign up"
 		fill_in "Email", with: ''
-		fill_in "Password", with: ''
-		fill_in "Password confirmation", with: ''
+		fill_in "Password (6 characters minimum)", with: ''
+		fill_in "Password Confirmation", with: ''
 		click_button 'Sign up'
-		expect(page).to have_content('You have not signed up successfully.')
+		# expect(page).to have_content('You have not signed up successfully.')
+	end
+
+	scenario 'can go to login' do
+		visit "/"
+		click_link "sign up"
+		click_link "Click here if you have an account aleady"
+		expect(page.current_path).to eq(new_user_session_path)
 	end
 end
