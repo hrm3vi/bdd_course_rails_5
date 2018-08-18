@@ -3,10 +3,9 @@ require 'rails_helper'
 RSpec.feature "listing articles" do
 
 	before do
-		@article1 = Article.create(title: "The first article", body: "Lorem ipsum dolor sit amet, consectetur.")
-		@article2 = Article.create(title: "The second article", body: "Body of second article")
-
-
+    john = User.create(email: 'john@example.com', password: 'pasword')
+		@article1 = Article.create(title: "The first article", body: "Lorem ipsum dolor sit amet, consectetur.", user: john)
+		@article2 = Article.create(title: "The second article", body: "Body of second article", user: john)
 	end
 
   	scenario "a user list all articles" do
@@ -23,7 +22,6 @@ RSpec.feature "listing articles" do
 
     scenario "a user has no articles" do
       Article.delete_all
-
       visit "/"
 
       expect(page).not_to have_content(@article1.title)
