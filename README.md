@@ -1,1 +1,8 @@
-- style devise error messages
+- Articles belong to users
+- Users will own articles
+- Users 1 side of this
+- Articles - many
+- One user can have manu articles
+- An articles can only belong to 1 user
+- Foreign key of user_id in the articles table
+- Create the spec 
