@@ -8,7 +8,7 @@ RSpec.feature "Showing an article" do
 		@article = Article.create(title: 'The first article', body: 'Lorem ipsum lalala', user: @john)
 	end
 
-	scenario "to non-signed-in users, hide edit and delete button" do
+	scenario "to non-signed-in users, hide edit and delete buttons" do
 		visit "/"
 		click_link @article.title
 		expect(page).to have_content(@article.title)
@@ -19,7 +19,7 @@ RSpec.feature "Showing an article" do
 		expect(page).not_to have_css("#delete-article")
 	end
 
-	scenario "to non-owner, hide edit and delete button" do
+	scenario "to non-owner, hide edit and delete buttons" do
 		login_as(@chela)
 		visit "/"
 		click_link @article.title
@@ -29,6 +29,18 @@ RSpec.feature "Showing an article" do
 
 		expect(page).not_to have_css("#edit-article")
 		expect(page).not_to have_css("#delete-article")
+	end
+
+	scenario "signed-in owner, sees edit and delete buttons" do
+		login_as(@john)
+		visit "/"
+		click_link @article.title
+		expect(page).to have_content(@article.title)
+		expect(page).to have_content(@article.body)
+		expect(current_path).to eq(article_path(@article))
+
+		expect(page).to have_css("#edit-article")
+		expect(page).to have_css("#delete-article")
 	end
 
 
