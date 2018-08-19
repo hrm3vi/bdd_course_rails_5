@@ -1,8 +1,4 @@
-- Articles belong to users
-- Users will own articles
-- Users 1 side of this
-- Articles - many
-- One user can have manu articles
-- An articles can only belong to 1 user
-- Foreign key of user_id in the articles table
-- Create the spec 
+- Restric Access:
+-- Hide 'New' Article btn for not-signed-in users;
+-- Hide "Edit" and "Delete" from non-owners;
+-- Permit owners to edit and delete their own articles.
