@@ -7,6 +7,44 @@ RSpec.describe "Articles", type: :request do
 		@article = Article.create!(title: "Title One", body: "Body of article one", user: @john)
 	end
 
+	describe 'DELETE /articles/:id' do
+
+		context 'with non-signed-in user' do
+			before { delete "/articles/#{@article.id}" }
+			it "redirects to the sign-in page" do
+				expect(response.status).to eq 302
+				flash_message = "You need to sign in or sign up before continuing."
+				expect(flash[:alert]).to eq flash_message
+				expect(Article.count).to eq(1)
+			end
+		end
+
+		context 'with signed-in non-owner user' do
+			before do 
+				login_as(@guacibiris)
+				delete "/articles/#{@article.id}" 
+			end
+			it "redirects to the sign-inhome page" do
+				expect(response.status).to eq 302
+				flash_message = "You can only delete your own article."
+				expect(flash[:alert]).to eq flash_message
+				expect(Article.count).to eq(1)
+			end
+		end
+
+		context 'with signed-in owner user' do
+			before do 
+				login_as(@john)
+				delete "/articles/#{@article.id}"
+			end
+			it "successfully edits article" do
+				expect(response.status).to eq 302
+				expect(Article.count).to eq(0)
+			end
+		end
+
+	end
+
 	describe 'GET /articles/:id/edit' do
 
 		context 'with non-signed-in user' do
@@ -32,13 +70,11 @@ RSpec.describe "Articles", type: :request do
 
 		context 'with signed-in owner user' do
 			before do 
-				login_as(@guacibiris)
+				login_as(@john)
 				get "/articles/#{@article.id}/edit" 
 			end
 			it "successfully edits article" do
 				expect(response.status).to eq 200
-				flash_message = "You "
-				expect(flash[:alert]).to eq flash_message
 			end
 		end
 
