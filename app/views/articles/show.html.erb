@@ -36,7 +36,7 @@
 
 <div class="card" style="margin-top: -1rem;">
   	<div class="card-body bg-light">
-   		<%= form_for [@article, @comment], :html => {class: "form-horizontal", role: "form"} do |f| %>
+   		<%= form_for [@article, @comment], remote: true, :html => {class: "form-horizontal", role: "form"} do |f| %>
    			<% if @comment.errors.any? %>
 		        <div class="container" style="padding-bottom: 1rem;">
 		          <div class="row justify-content-md-center">
@@ -86,14 +86,14 @@
 </div>
 
 <% if persisted_comments(@comments).any? %>
+
 	<div class="card" style="margin: 1rem;">
 	  	<div class="card-body bg-warning">
-	   		<h2>Comments (<%= persisted_comments(@comments).count %>)</h2>
-	   		<p>Most recent is from <%= time_ago_in_words(persisted_comments(@comments).last.created_at) %> ago</p>
+	   		<h2>Comments</h2>
 	  	</div>
 	</div>
 	<div class="container">
-		<div class="row">
+		<div id="messages" class="row">
 			<% persisted_comments(@comments).each do |comment| %>
 				<div class="col-md-6">
 					 <div class="card border-secondary mb-3">
@@ -108,7 +108,4 @@
 			<% end %>
 		</div>
 	</div>
-
-
 <% end %>
-

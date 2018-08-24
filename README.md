@@ -1,2 +1,1 @@
-- A signed-in user gets to comment
-- A non-signed-in user is re-directed to sign-in page
+- Creating channel for comments - Real time

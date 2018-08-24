@@ -1,0 +1,10 @@
+<div class="col-md-6">
+	 <div class="card border-secondary mb-3">
+		<div class="card-header">
+			<small class="pull-right">by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at)%> ago</small>
+		</div>
+		<div class="card-body text-secondary">
+			<div class="card-text"><%= comment.body %></div>
+		</div>
+	</div>
+</div>
