@@ -10,11 +10,15 @@ RSpec.feature 'adding reviews to articles' do
 	scenario 'permits a signed-in user to write a comment' do
 		login_as(@chela)
 		visit '/'
+
 		click_link @article.title
+
 		fill_in "New Comment", with: 'Amazing comment'
 		click_button "Add Comment"
-		expect(page).to have_content("Comment has been created")
+
 		expect(page).to have_content("Amazing comment")
+		expect(page).to have_content("Comment has been created")
+
 		expect(current_path).to eq article_path(@article.id)
 	end
 end

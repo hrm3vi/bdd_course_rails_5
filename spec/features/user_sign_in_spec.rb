@@ -8,14 +8,14 @@ require 'rails_helper'
  	scenario 'with valid credentials' do
  		visit "/"
 
- 		click_link "log in"
+ 		click_link "Log In"
  		fill_in "Email", with: @john.email
  		fill_in "Password", with: @john.password
- 		click_button "Log in"
+ 		click_button "Log In"
 
  		expect(page).to have_content("Signed in successfully.")
  		expect(page).to have_content("Signed in as #{@john.email}")
- 		expect(page).to have_link("sign out")
- 		expect(page).not_to have_link("log in")
+ 		expect(page).to have_link("Sign Out")
+ 		expect(page).not_to have_link("Log In")
  	end
  end

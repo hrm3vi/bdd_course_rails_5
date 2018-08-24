@@ -28,13 +28,13 @@
   	</div>
 </div>
 
-<div class="card" style="margin-top: -1rem;">
-  	<div class="card-body bg-warning">
-   		<%= @article.body %>
+<div class="card text-white bg-dark" style="margin: -3rem 0 3rem 0;">
+  	<div class="card-body">
+   		<h2><%= @article.body %></h2>
   	</div>
 </div>
 
-<div class="card" style="margin-top: 1rem;">
+<div class="card" style="margin-top: -1rem;">
   	<div class="card-body bg-light">
    		<%= form_for [@article, @comment], :html => {class: "form-horizontal", role: "form"} do |f| %>
    			<% if @comment.errors.any? %>
@@ -67,7 +67,7 @@
 		          	</div>
 		          	<div class="row">
 		            	<div class="control-label col-md-12">
-		              		<%= f.text_area :body, rows: 10, class: "form-control", placeholder: "Your comment", autofocus: true %>
+		              		<%= f.text_area :body, rows: 4, class: "form-control", placeholder: "Your comment", autofocus: true %>
 		            	</div>
 		          	</div>
 		        </div>
@@ -85,19 +85,30 @@
   	</div>
 </div>
 
-<div class="card text-white bg-dark mb-3" style="margin: 1rem 0rem;">
-  	<div class="card-body">
-   		<h2>Comments</h2>
-  	</div>
-</div>
-<% if @article.comments.any? %>
-	<% persisted_comments(@comments).each do |comment| %>
-		 <div class="card border-secondary mb-3">
-			<div class="card-header"><%= comment.body %></div>
-			<div class="card-body text-secondary">
-				<p class="card-text">by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %></p>
-			</div>
+<% if persisted_comments(@comments).any? %>
+	<div class="card" style="margin: 1rem;">
+	  	<div class="card-body bg-warning">
+	   		<h2>Comments (<%= persisted_comments(@comments).count %>)</h2>
+	   		<p>Most recent is from <%= time_ago_in_words(persisted_comments(@comments).last.created_at) %> ago</p>
+	  	</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<% persisted_comments(@comments).each do |comment| %>
+				<div class="col-md-6">
+					 <div class="card border-secondary mb-3">
+						<div class="card-header">
+							<small class="pull-right">by <%= comment.user.email %> <%= time_ago_in_words(comment.created_at)%> ago</small>
+						</div>
+						<div class="card-body text-secondary">
+							<div class="card-text"><%= comment.body %></div>
+						</div>
+					</div>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+	</div>
+
+
 <% end %>
 
